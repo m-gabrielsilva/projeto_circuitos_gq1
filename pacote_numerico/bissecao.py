@@ -1,14 +1,19 @@
+import pandas as pd
+
 def metodo_bissecao(f, a, b, tol, max_iter):
+    historico = []
   
     if f(a) * f(b) >= 0:
         raise ValueError("O intervalo inicial é inválido. f(a) e f(b) devem ter sinais opostos.")
     
     k = 0
   
-    while (b - a) >= tol and k < max_iter:
+    while (b - a) >= tol and k < (max_iter + 1):
 
         x = (a + b) / 2.0 
-        
+        erro = abs(b-a) / 2
+        historico.append({'Iteração': k+1, 'x_novo': x, 'Erro': erro})
+
         if f(x) == 0:
             a = x
             b = x
@@ -23,7 +28,7 @@ def metodo_bissecao(f, a, b, tol, max_iter):
         
     raiz_aprox = (a + b) / 2.0
     
-    return raiz_aprox, k
+    return pd.DataFrame(historico), raiz_aprox, k
 
 
 # =====================================================================

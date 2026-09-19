@@ -8,11 +8,11 @@ def metodo_bissecao(f, a, b, tol, max_iter):
     
     k = 0
   
-    while (b - a) >= tol and k < max_iter:
+    while (b - a) >= tol and k < (max_iter + 1):
 
         x = (a + b) / 2.0 
         erro = abs(b-a) / 2
-        historico.append({'Iteração': k, 'x_novo': x, 'Erro': erro})
+        historico.append({'Iteração': k+1, 'x_novo': x, 'Erro': erro})
 
         if f(x) == 0:
             a = x

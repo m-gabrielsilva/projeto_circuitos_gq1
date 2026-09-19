@@ -1,21 +1,19 @@
-def newton_raphson_circuito(i0, eps1=1e-6, eps2=1e-6, kmax=100):
+def newton_raphson(f, df, x0, eps1=1e-6, eps2=1e-6, kmax=100):
 
-    def f(i):
-        return -i**3 - 2*i + 10
-        
-    def df(i):
-        return -3*i**2 - 2
-
-    i_k = i0
+    x = x0
     hist = []
 
     for k in range(1, kmax + 1):
-        i_novo = i_k - f(i_k) / df(i_k)
-        hist.append((k, i_novo, f(i_novo)))
+        derivada = df(x)
+        if derivada == 0:
+            raise ZeroDivisionError(f"Derivada nula na iteração {k} para x = {x}")
 
-        if abs(f(i_novo)) < eps1 or abs(i_novo - i_k) < eps2:
-            return i_novo, hist
+        x_novo = x - f(x) / derivada
+        hist.append((k, x_novo, f(x_novo), abs(x_novo - x)))
 
-        i_k = i_novo
+        if abs(f(x_novo)) < eps1 or abs(x_novo - x) < eps2:
+            return x_novo, hist
 
-    return i_k, hist
+        x = x_novo
+
+    return x, hist

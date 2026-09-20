@@ -14,8 +14,8 @@ dependencies = [
     "pandas>=3.0.6",
 ]
 
-[project.scripts]
-projeto-circuitos-gq1 = "projeto_circuitos_gq1:main"
+# [project.scripts]
+# projeto-circuitos-gq1 = "projeto_circuitos_gq1:main"
 
 [build-system]
 requires = ["uv_build>=0.12.17,<0.13.0"]
